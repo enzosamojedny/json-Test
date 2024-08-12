@@ -17,6 +17,15 @@ namespace FinancialEntityBuilder
         private static string jsonDB = "FinancialEntitiesDB.json";
         private static string jsonData = File.ReadAllText(jsonDB);
 
+
+        public FinancialEntity(int id, string name)
+        {
+            ID = id;
+            Name = name;
+        }
+
+
+        //metodos
         public static string GetEntityByID(int ID)
         {
             List<FinancialEntity> entities = JsonConvert.DeserializeObject<List<FinancialEntity>>(jsonData);
@@ -28,12 +37,6 @@ namespace FinancialEntityBuilder
                 return "Entity not found ";
             }
             return foundEntity.Name;
-        }
-
-        public FinancialEntity(int id, string name)
-        {
-            ID = id;
-          Name = name;
         }
 
         public string GetFinancialEntity()

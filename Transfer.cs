@@ -21,7 +21,7 @@ namespace TransferBuilder
 
 
 
-        public Transfer(string name, string dni, decimal savingsAccount, string origin, string destination, decimal amount) : base(name,dni, savingsAccount) { // envio una persona por defecto, mas los datos de la transfer
+        public Transfer(int id, string name, string dni, decimal savingsAccount, string origin, string destination, decimal amount) : base(id,name,dni, savingsAccount) { // envio una persona por defecto, mas los datos de la transfer
             Origin = origin;
             Destination = destination;
             Amount = amount;

@@ -43,8 +43,12 @@ namespace array_practice
 
             Console.WriteLine(first);
                 Console.ReadKey();
-            var test = Person.InitializeData();
+            
+            var test = Person.GetDataByID(1);
+            
             Console.WriteLine(test);
+            var testing = new Person(11,"Carlos huevon","34234456",56432m);
+             Person.CreatePerson(testing);
             //Person person = new Person(inputNombre,inputDNI, decimalDeposit);
             //var result = person.GetPersonValues();
             //Console.WriteLine(result);

@@ -23,7 +23,7 @@ namespace BCRAConfirmation
         private static string jsonData = System.IO.File.ReadAllText(json);
         List<Person> strings = JsonConvert.DeserializeObject<List<Person>>(jsonData);
 
-        public BCRA(bool isApproved, bool areFundsEnough, bool accountStatus, bool isSameCurrency, decimal transactionFee, string name, string dni, decimal savingsAccount, string origin, string destination, decimal amount) : base(name,dni,savingsAccount,origin, destination, amount)
+        public BCRA(bool isApproved, bool areFundsEnough, bool accountStatus, bool isSameCurrency, decimal transactionFee,int id, string name, string dni, decimal savingsAccount, string origin, string destination, decimal amount) : base(id, name,dni,savingsAccount,origin, destination, amount)
         {
             IsApproved = isApproved;
             AreFundsEnough = areFundsEnough;
