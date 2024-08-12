@@ -1,0 +1,42 @@
+[
+    {
+        "ID": 1,
+        "Name": "Banco Nación de la República Argentina (BNA)"
+    },
+    {
+        "ID": 2,
+        "Name": "JP Morgan Chase & Co."
+    },
+    {
+        "ID": 3,
+        "Name": "Goldman Sachs Group, Inc."
+    },
+    {
+        "ID": 4,
+        "Name": "Citibank N.A."
+    },
+    {
+        "ID": 5,
+        "Name": "Wells Fargo & Company"
+    },
+    {
+        "ID": 6,
+        "Name": "Bank of America Corporation"
+    },
+    {
+        "ID": 7,
+        "Name": "HSBC Holdings plc"
+    },
+    {
+        "ID": 8,
+        "Name": "BNP Paribas"
+    },
+    {
+        "ID": 9,
+        "Name": "Deutsche Bank AG"
+    },
+    {
+        "ID": 10,
+        "Name": "Barclays PLC"
+    }
+]
