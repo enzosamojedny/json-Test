@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using PersonBuilder;
 // usar newtonsoft para traer el nombre de la entity de db, y solo mandar el id por parametro a  FinancialEntity
 namespace FinancialEntityBuilder
 {
@@ -14,14 +15,25 @@ namespace FinancialEntityBuilder
         public int ID { get; set; }
         public string Name { get; set; }
 
-        private static string jsonDB = "FinancialEntitiesDB.json";
-        private static string jsonData = File.ReadAllText(jsonDB);
+        private static string jsonFilepath = "FinancialEntitiesDB.json";
+        
 
 
         public FinancialEntity(int id, string name)
         {
             ID = id;
             Name = name;
+        }
+
+        public static void CreateFinancialEntity(FinancialEntity financialEntity)
+        {
+            if (File.Exists(jsonFilepath))
+            {
+                List<FinancialEntity> financialList = new List<FinancialEntity>();
+                
+                string jsonData = File.ReadAllText(jsonFilepath);
+
+            }
         }
 
 
