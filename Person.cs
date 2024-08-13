@@ -14,10 +14,8 @@ namespace PersonBuilder
         public string DNI { get; set; }
         public decimal SavingsAccount { get; set; }
 
-        private static string jsonFilepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "PersonDB.json"); //this should be a global variable like a .ENV
+        private static string jsonFilepath = Environment.GetEnvironmentVariable("PERSON_PATH");
 
-
-        //string myVariable = Environment.GetEnvironmentVariable("MY_ENV_VARIABLE");
 
 
 
@@ -44,24 +42,7 @@ namespace PersonBuilder
         //metodos
         public static void CreatePerson(Person person)
         {
-            List<Person> list;
-
-            if (File.Exists(jsonFilepath))
-            {
-               var dataFromDB = ReadDB(jsonFilepath);
-               list = JsonConvert.DeserializeObject<List<Person>>(dataFromDB);
-
-            }
-            else
-            {
-                list = new List<Person>();
-                string firstJsonInDB = JsonConvert.SerializeObject(list, Formatting.Indented);
-                File.WriteAllText(jsonFilepath, firstJsonInDB); //file is being created
-                
-            }
-            list.Add(person);
-            string updatedJson = JsonConvert.SerializeObject(list, Formatting.Indented);
-            File.WriteAllText(jsonFilepath, updatedJson);
+            HelperFns.Helper.WriteInDB(jsonFilepath, 1, person, null, null);
         }
 
         public static string GetDataByID(int id)

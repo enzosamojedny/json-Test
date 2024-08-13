@@ -15,8 +15,8 @@ namespace FinancialEntityBuilder
         public int ID { get; set; }
         public string Name { get; set; }
 
-        private static string jsonFilepath = "FinancialEntitiesDB.json";
-        
+        private static string jsonFilepath = Environment.GetEnvironmentVariable("FINANCIAL_PATH");
+
 
 
         public FinancialEntity(int id, string name)
@@ -27,19 +27,14 @@ namespace FinancialEntityBuilder
 
         public static void CreateFinancialEntity(FinancialEntity financialEntity)
         {
-            if (File.Exists(jsonFilepath))
-            {
-                List<FinancialEntity> financialList = new List<FinancialEntity>();
-                
-                string jsonData = File.ReadAllText(jsonFilepath);
-
-            }
+            HelperFns.Helper.WriteInDB(jsonFilepath, 2, null, financialEntity, null);
         }
 
 
         //metodos
         public static string GetEntityByID(int ID)
         {
+            string jsonData = File.ReadAllText(jsonFilepath);
             List<FinancialEntity> entities = JsonConvert.DeserializeObject<List<FinancialEntity>>(jsonData);
             string result = "";
            

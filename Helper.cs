@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 //usamos todos los files para hacerlo dinamico
 using PersonBuilder;
 using FinancialEntityBuilder;
-using BCRAConfirmation;
+using AccountReconciler;
+using TransferBuilder;
 using Newtonsoft.Json;
 namespace HelperFns
 {
-    //1 = Person
-    //2 = FinancialEntity
-    //3 = BCRA
 
     public class Helper
     {
@@ -29,16 +27,19 @@ namespace HelperFns
             }
         }
 
-        public static string WriteInDB(string jsonFilepath, byte targetDB, Person? person, FinancialEntity? financialEntity, BCRA? bcra) // targetDB recibiria un byte (8 bits) con el nombre (va de 0 a 255)
+        public static string WriteInDB(string jsonFilepath, byte targetDB, Person? person, FinancialEntity? financialEntity, Transfer? transfer) // targetDB recibiria un byte (8 bits) con el nombre (va de 0 a 255)
         { 
             if (File.Exists(jsonFilepath))
             {
                 var dataFromDB = ReadDB(jsonFilepath);
                 try
                 {
+                    //early return
                     if (person == null) return null;
                     if (financialEntity == null) return null;
-                    if (bcra == null) return null;
+                    if (transfer == null) return null;
+
+                    //Person
                     if (targetDB == 1)
                     {
                         List<Person?> list;
@@ -49,6 +50,7 @@ namespace HelperFns
                         return "Person successfully created";
                     }
                     
+                    //FinancialEntity
                     else if (targetDB == 2)
                     {
                         List<FinancialEntity?> list;
@@ -58,10 +60,12 @@ namespace HelperFns
                         File.WriteAllText(jsonFilepath, updatedJson);
                         return "Financial institution successfully created";
                     }
-                    //else if (targetDB == 3)
-                    //{
+                    
+                    // Transfer
+                    else if (targetDB == 3)
+                    {
 
-                    //}
+                    }
                     else
                     {
                         throw new ArgumentException("Something happened with targetDB");

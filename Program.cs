@@ -9,13 +9,14 @@ using PersonBuilder;
 using Newtonsoft.Json;
 using TransferBuilder;
 using FinancialEntityBuilder;
-
+using ENV;
 namespace array_practice
 {
     internal class Program
     {
         static void Main(string[] args) {
 
+            ENV.EnviromentalVariables.DbAccess();
             //Console.WriteLine("Write your full name");
             //string inputNombre = Console.ReadLine();
             //Console.ReadKey();
@@ -42,7 +43,7 @@ namespace array_practice
             var first = FinancialEntity.GetEntityByID(1);
 
             Console.WriteLine(first);
-                Console.ReadKey();
+            Console.ReadKey();
             
             var test = Person.GetDataByID(1);
             

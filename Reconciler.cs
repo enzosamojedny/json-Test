@@ -8,9 +8,9 @@ using TransferBuilder;
 using System.IO;
 using Newtonsoft.Json;
 using PersonBuilder;
-namespace BCRAConfirmation
+namespace AccountReconciler
 {
-    public class BCRA : Transfer
+    public class ReconcileAccounts : Transfer
     {
         public bool IsApproved { get; set; }
         public bool AreFundsEnough { get; set; }
@@ -23,7 +23,7 @@ namespace BCRAConfirmation
         private static string jsonData = System.IO.File.ReadAllText(json);
         List<Person> strings = JsonConvert.DeserializeObject<List<Person>>(jsonData);
 
-        public BCRA(bool isApproved, bool areFundsEnough, bool accountStatus, bool isSameCurrency, decimal transactionFee,int id, string name, string dni, decimal savingsAccount, string origin, string destination, decimal amount) : base(id, name,dni,savingsAccount,origin, destination, amount)
+        public ReconcileAccounts(bool isApproved, bool areFundsEnough, bool accountStatus, bool isSameCurrency, decimal transactionFee,int id, string name, string dni, decimal savingsAccount, string origin, string destination, decimal amount) : base(id, name,dni,savingsAccount,origin, destination, amount)
         {
             IsApproved = isApproved;
             AreFundsEnough = areFundsEnough;
