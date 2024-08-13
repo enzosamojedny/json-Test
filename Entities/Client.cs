@@ -5,37 +5,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-namespace PersonBuilder
+
+namespace Client.Entities
 {
     public class Person
     {
-        public int ID { get; set; }
+        public int ClientID { get; set; }
         public string Name { get; set; }
         public string DNI { get; set; }
+
+        public string AccountNumber {  get; set; } //UUID maybe
         public decimal SavingsAccount { get; set; }
 
         private static string jsonFilepath = Environment.GetEnvironmentVariable("PERSON_PATH");
 
-
-
-
-
-
         //para agregar una nueva persona, creamos el objeto, lo agregamos a la lista, lo serializamos y despues queda hacer un WriteAllText, eso seria todo!
 
-
-
-        public Person(int id, string name, string dni, decimal savingsAccount) // constructor should have the same name as the class
+        public Person(int clientid, string name, string dni, decimal savingsAccount, int accountNumber) // constructor should have the same name as the class
         {
-            ID = id;
+            ClientID = clientid;
             Name = name;
             DNI = dni;
-            SavingsAccount = savingsAccount;
+            SavingsAccount = savingsAccount;//balance
+            AccountNumber = accountNumber; //like a cbu, so i transfer to an accountNumber instead of a clientID
         }
 
         static string ReadDB(string jsonFilepath)
         {
-            string jsonData = System.IO.File.ReadAllText(jsonFilepath);
+            string jsonData = File.ReadAllText(jsonFilepath);
             return jsonData;
         }
 
@@ -52,7 +49,7 @@ namespace PersonBuilder
             string result = "";
             foreach (var person in list)
             {
-                if(person.ID == id)
+                if (person.ClientID == id)
                 {
                     result = person.Name;
                 }
@@ -62,7 +59,7 @@ namespace PersonBuilder
         }
         public string GetPersonValues() // method should always have a return, unless it's -void-
         {
-           return $"Name: {Name}, DNI: {DNI}, Money: {SavingsAccount}";
+            return $"Name: {Name}, DNI: {DNI}, Money: {SavingsAccount}";
         }
     }
 }

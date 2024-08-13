@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 //usamos todos los files para hacerlo dinamico
-using PersonBuilder;
-using FinancialEntityBuilder;
-using AccountReconciler;
-using TransferBuilder;
+using Client.Entities;
+using Transference.Entities;
+using Reconciler.Entities;
+using Financial.Entities;
 using Newtonsoft.Json;
+
 namespace HelperFns
 {
 
@@ -64,7 +65,12 @@ namespace HelperFns
                     // Transfer
                     else if (targetDB == 3)
                     {
-
+                        List<Transfer?> list;
+                        list = JsonConvert.DeserializeObject<List<Transfer?>>(dataFromDB);
+                        list.Add(transfer);
+                        string updatedJson = JsonConvert.SerializeObject(list, Formatting.Indented);
+                        File.WriteAllText(jsonFilepath, updatedJson);
+                        return "Transfer successfully registeres";
                     }
                     else
                     {

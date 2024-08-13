@@ -1,14 +1,13 @@
 ﻿using Newtonsoft.Json;
-using PersonBuilder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using PersonBuilder;
+
 // usar newtonsoft para traer el nombre de la entity de db, y solo mandar el id por parametro a  FinancialEntity
-namespace FinancialEntityBuilder
+namespace Financial.Entities
 {
     public class FinancialEntity
     {
@@ -37,9 +36,9 @@ namespace FinancialEntityBuilder
             string jsonData = File.ReadAllText(jsonFilepath);
             List<FinancialEntity> entities = JsonConvert.DeserializeObject<List<FinancialEntity>>(jsonData);
             string result = "";
-           
-           var foundEntity =  entities.Find(f => f.ID == ID);
-            if(foundEntity is null)
+
+            var foundEntity = entities.Find(f => f.ID == ID);
+            if (foundEntity is null)
             {
                 return "Entity not found ";
             }

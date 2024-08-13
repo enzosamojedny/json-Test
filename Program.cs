@@ -5,11 +5,10 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.Intrinsics.X86;
 using System.Xml.Linq;
-using PersonBuilder;
 using Newtonsoft.Json;
-using TransferBuilder;
-using FinancialEntityBuilder;
 using ENV;
+using Financial.Entities;
+using Client.Entities;
 namespace array_practice
 {
     internal class Program
@@ -48,8 +47,9 @@ namespace array_practice
             var test = Person.GetDataByID(1);
             
             Console.WriteLine(test);
-            var testing = new Person(11,"Carlos huevon","34234456",56432m);
-             Person.CreatePerson(testing);
+            //var testing = new Person(11,"Carlos huevon","34234456",56432m);
+             //Person.CreatePerson(testing);
+
             //Person person = new Person(inputNombre,inputDNI, decimalDeposit);
             //var result = person.GetPersonValues();
             //Console.WriteLine(result);

@@ -1,0 +1,102 @@
+[
+    {
+        "ID": 1,
+        "Name": "John Doe",
+        "DNI": "12345678A",
+        "SavingsAccount": 10000.50,
+        "Origin": "Account123",
+        "Destination": "Account456",
+        "Amount": 1500.75,
+        "TransferID": 101
+    },
+    {
+        "ID": 2,
+        "Name": "Jane Smith",
+        "DNI": "23456789B",
+        "SavingsAccount": 20000.75,
+        "Origin": "Account789",
+        "Destination": "Account012",
+        "Amount": 2500.00,
+        "TransferID": 102
+    },
+    {
+        "ID": 3,
+        "Name": "Carlos Huevon",
+        "DNI": "34567890C",
+        "SavingsAccount": 30000.00,
+        "Origin": "Account345",
+        "Destination": "Account678",
+        "Amount": 3500.50,
+        "TransferID": 103
+    },
+    {
+        "ID": 4,
+        "Name": "Alice Johnson",
+        "DNI": "45678901D",
+        "SavingsAccount": 15000.25,
+        "Origin": "Account901",
+        "Destination": "Account234",
+        "Amount": 4500.25,
+        "TransferID": 104
+    },
+    {
+        "ID": 5,
+        "Name": "Michael Brown",
+        "DNI": "56789012E",
+        "SavingsAccount": 17500.80,
+        "Origin": "Account567",
+        "Destination": "Account890",
+        "Amount": 1200.00,
+        "TransferID": 105
+    },
+    {
+        "ID": 6,
+        "Name": "Laura White",
+        "DNI": "67890123F",
+        "SavingsAccount": 25000.00,
+        "Origin": "Account123",
+        "Destination": "Account345",
+        "Amount": 2500.90,
+        "TransferID": 106
+    },
+    {
+        "ID": 7,
+        "Name": "David Black",
+        "DNI": "78901234G",
+        "SavingsAccount": 13000.65,
+        "Origin": "Account678",
+        "Destination": "Account901",
+        "Amount": 1800.75,
+        "TransferID": 107
+    },
+    {
+        "ID": 8,
+        "Name": "Emma Green",
+        "DNI": "89012345H",
+        "SavingsAccount": 22000.30,
+        "Origin": "Account234",
+        "Destination": "Account567",
+        "Amount": 2600.40,
+        "TransferID": 108
+    },
+    {
+        "ID": 9,
+        "Name": "Olivia Blue",
+        "DNI": "90123456I",
+        "SavingsAccount": 19000.45,
+        "Origin": "Account890",
+        "Destination": "Account123",
+        "Amount": 2100.00,
+        "TransferID": 109
+    },
+    {
+        "ID": 10,
+        "Name": "William Red",
+        "DNI": "01234567J",
+        "SavingsAccount": 27000.70,
+        "Origin": "Account456",
+        "Destination": "Account678",
+        "Amount": 3000.50,
+        "TransferID": 110
+    }
+]
