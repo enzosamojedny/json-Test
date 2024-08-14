@@ -12,7 +12,8 @@ using Newtonsoft.Json;
 
 namespace HelperFns
 {
-
+    //hacer la logica para el autoincrement cuando se cree una nueva persona, y el saldo debe ser un numero random entre 10000 y 99999 (maybe)
+    //hacer la logica para un update de persona
     public class Helper
     {
         public static string ReadDB(string jsonFilepath)

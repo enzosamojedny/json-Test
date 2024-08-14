@@ -13,21 +13,22 @@ namespace Client.Entities
         public int ClientID { get; set; }
         public string Name { get; set; }
         public string DNI { get; set; }
-
-        public string AccountNumber {  get; set; } //UUID maybe
-        public decimal SavingsAccount { get; set; }
+        public string AccountNumber {  get; set; } //puede ser un bigInt random tipo CBU
+        public decimal SavingsAccount { get; set; } //balance
+        public string Alias {  get; set; }
 
         private static string jsonFilepath = Environment.GetEnvironmentVariable("PERSON_PATH");
 
         //para agregar una nueva persona, creamos el objeto, lo agregamos a la lista, lo serializamos y despues queda hacer un WriteAllText, eso seria todo!
 
-        public Person(int clientid, string name, string dni, decimal savingsAccount, int accountNumber) // constructor should have the same name as the class
+        public Person(int clientid, string name, string dni, decimal savingsAccount, string accountNumber, string alias) // constructor should have the same name as the class
         {
             ClientID = clientid;
             Name = name;
             DNI = dni;
             SavingsAccount = savingsAccount;//balance
             AccountNumber = accountNumber; //like a cbu, so i transfer to an accountNumber instead of a clientID
+            Alias = alias;
         }
 
         static string ReadDB(string jsonFilepath)
@@ -57,7 +58,7 @@ namespace Client.Entities
             }
             return result;
         }
-        public string GetPersonValues() // method should always have a return, unless it's -void-
+        public string GetPersonValues()
         {
             return $"Name: {Name}, DNI: {DNI}, Money: {SavingsAccount}";
         }
