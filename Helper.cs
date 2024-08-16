@@ -28,10 +28,12 @@ namespace HelperFns
                 return "Could not find filepath";
             }
         }
-
-        public static string WriteInDB(string jsonFilepath, byte targetDB, Person? person, FinancialEntity? financialEntity, Transfer? transfer) // targetDB recibiria un byte (8 bits) con el nombre (va de 0 a 255)
+        // targetDB recibiria un byte (8 bits) con el nombre (va de 0 a 255)
+        //implementar la creacion en db de reconciler
+        public static string WriteInDB(string jsonFilepath, byte targetDB, Person? person, FinancialEntity? financialEntity, Transfer? transfer, ReconcileAccounts? reconciler) 
         { 
             if (File.Exists(jsonFilepath))
+
             {
                 var dataFromDB = ReadDB(jsonFilepath);
                 try
@@ -45,9 +47,16 @@ namespace HelperFns
                     if (targetDB == 1)
                     {
                         List<Person?> list;
-                        list = JsonConvert.DeserializeObject<List<Person?>>(dataFromDB);
+                        if (string.IsNullOrWhiteSpace(dataFromDB))
+                        {
+                            list = new List<Person?>();
+                        }
+                        else
+                        {
+                            list = JsonConvert.DeserializeObject<List<Person?>>(dataFromDB)?? new List<Person?>();
+                        }
                         list.Add(person);
-                        string updatedJson = JsonConvert.SerializeObject(list,Formatting.Indented);
+                        string updatedJson = JsonConvert.SerializeObject(list, Formatting.Indented);
                         File.WriteAllText(jsonFilepath, updatedJson);
                         return "Person successfully created";
                     }
@@ -71,7 +80,7 @@ namespace HelperFns
                         list.Add(transfer);
                         string updatedJson = JsonConvert.SerializeObject(list, Formatting.Indented);
                         File.WriteAllText(jsonFilepath, updatedJson);
-                        return "Transfer successfully registeres";
+                        return "Transfer successfully registered";
                     }
                     else
                     {

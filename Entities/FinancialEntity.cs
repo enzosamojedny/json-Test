@@ -26,7 +26,7 @@ namespace Financial.Entities
 
         public static void CreateFinancialEntity(FinancialEntity financialEntity)
         {
-            HelperFns.Helper.WriteInDB(jsonFilepath, 2, null, financialEntity, null);
+            HelperFns.Helper.WriteInDB(jsonFilepath, 2, null, financialEntity, null,null);
         }
 
 

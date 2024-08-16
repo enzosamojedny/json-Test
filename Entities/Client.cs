@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Numerics;
 
 namespace Client.Entities
 {
@@ -13,20 +14,20 @@ namespace Client.Entities
         public int ClientID { get; set; }
         public string Name { get; set; }
         public string DNI { get; set; }
-        public string AccountNumber {  get; set; } //puede ser un bigInt random tipo CBU
-        public decimal SavingsAccount { get; set; } //balance
+        public BigInteger AccountNumber {  get; set; } // tipo CBU
+        public decimal AccountBalance { get; set; } //balance
         public string Alias {  get; set; }
 
         private static string jsonFilepath = Environment.GetEnvironmentVariable("PERSON_PATH");
 
         //para agregar una nueva persona, creamos el objeto, lo agregamos a la lista, lo serializamos y despues queda hacer un WriteAllText, eso seria todo!
 
-        public Person(int clientid, string name, string dni, decimal savingsAccount, string accountNumber, string alias) // constructor should have the same name as the class
+        public Person(int clientid, string name, BigInteger accountNumber, string dni, decimal accountBalance, string alias) // constructor should have the same name as the class
         {
             ClientID = clientid;
             Name = name;
             DNI = dni;
-            SavingsAccount = savingsAccount;//balance
+            AccountBalance = accountBalance;//balance
             AccountNumber = accountNumber; //like a cbu, so i transfer to an accountNumber instead of a clientID
             Alias = alias;
         }
@@ -40,7 +41,7 @@ namespace Client.Entities
         //metodos
         public static void CreatePerson(Person person)
         {
-            HelperFns.Helper.WriteInDB(jsonFilepath, 1, person, null, null);
+            HelperFns.Helper.WriteInDB(jsonFilepath, 1, person, null, null,null);
         }
 
         public static string GetDataByID(int id)
@@ -60,7 +61,7 @@ namespace Client.Entities
         }
         public string GetPersonValues()
         {
-            return $"Name: {Name}, DNI: {DNI}, Money: {SavingsAccount}";
+            return $"ClientID: {ClientID}, Name: {Name}, DNI: {DNI}, AccountNumber: {AccountNumber}, AccountBalance: {AccountBalance}, Alias: {Alias}";
         }
     }
 }

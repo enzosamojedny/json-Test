@@ -10,10 +10,18 @@ using System.Net;
 using System.Xml.Linq;
 using Client.Entities;
 using Financial.Entities;
-
+using System.Numerics;
+using Client.Entities;
 namespace Reconciler.Entities
 {
-    public class ReconcileAccounts : Transfer
+
+    
+    //Aggregation is similar to composition, but the lifetime of the objects involved is more independent.
+    //If a Reconciler object manages multiple Transfer objects but doesn’t own them exclusively, aggregation might be appropriate.
+
+    //for example, aggregation would be something is a part of something else
+    //objects can live without eachother but when they connect, they do have great semantic connection
+    public class ReconcileAccounts
     {
 
         //cosas a hacer en Reconciler:
@@ -34,8 +42,7 @@ namespace Reconciler.Entities
         private static string jsonFilepath = Environment.GetEnvironmentVariable("RECONCILER_PATH");
 
         // Constructor
-        public ReconcileAccounts(bool isApproved, bool areFundsEnough, bool accountStatus, bool isSameCurrency, decimal transactionFee, int id, string name, string dni, decimal savingsAccount, string origin, string destination, decimal amount, int transferid, string accountNumber,string alias)
-            : base(id, name, dni, savingsAccount, origin, destination, amount, transferid, accountNumber,alias)
+        public ReconcileAccounts(bool isApproved, bool areFundsEnough, bool accountStatus, bool isSameCurrency, decimal transactionFee)
         {
             IsApproved = isApproved;
             AreFundsEnough = areFundsEnough;
@@ -47,10 +54,12 @@ namespace Reconciler.Entities
         // tiene que recibir un decimal amount, chequear accountStatus, areFundsEnough, origin (aca se descuenta) y se acredita en destination
         // (buscando el accountNumber o alias, puede venir por parametro tmb)
         // chequear que haya saldo (sumando fees), y descontar el saldo a uno y acreditarlo a otro
-        public decimal ReconcileFunds(int financialEntityID, string financialEntityName, string transferOrigin, string transferDestination, decimal transferAmount, Guid transferAccountNumber, string alias, string transferDNI, int transferClientID) 
-        {
-            return 0;
-        }
 
+        //este metodo SOLO CHECKEA QUE TODO ESTE CORRECTO y seria ideal que te de el transferID acá, no?
+        public void ReconcileFunds(Transfer transfer, FinancialEntity financialEntity) 
+        {
+            Console.WriteLine(transfer);
+        }
+        //crear una db para comprobantes emitidos con todos los datos del objeto
     }
 }

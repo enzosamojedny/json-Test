@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Client.Entities;
 using Financial.Entities;
-
+using Reconciler.Entities;
 namespace Transference.Entities
 {
-    public class Transfer : Person
+    public class Transfer
     {
-         
-        //cambiar tipos de datos, hacerlo más útil y seguro
+
+        //Composition allows you to build complex objects from simpler ones. This is useful when your objects have a "has-a" relationship. In your app:
+
+        //Transfer and Client: A Transfer might be composed of client-related data but isn't a client itself. You might use composition to include Client information in a Transfer.
+
+        public Person Person { get; set; }
         public string Origin { get; set; }
         public string Destination { get; set; }
         public decimal Amount { get; set; }
@@ -19,31 +24,34 @@ namespace Transference.Entities
 
         private static string jsonFilepath = Environment.GetEnvironmentVariable("TRANSFERENCE_PATH");
 
-        public Transfer(int clientid, string name, string dni, decimal savingsAccount, string origin, string destination, decimal amount, int transferid,string accountNumber, string alias) : base(clientid, name, dni, savingsAccount,accountNumber, alias)
+        public Transfer(string origin, string destination, decimal amount, int transferid, Person persondata)
         {
             Origin = origin;
             Destination = destination;
             Amount = amount;
-            TransferID = Guid.NewGuid(); ;
+            TransferID = Guid.NewGuid();
+            Person = persondata; //person information is already included in transfer
         }
+        //---> asi se crea una instancia de transfer asociado a una persona ( seria todo por cmd!
+        //Person personData = new Person("John Doe", "12345678", 5000m);
+        //Transfer transfer = new Transfer("OriginBank", "DestinationBank", 1000m, 12345, personData);
+
+
         public static void CreateTransfer(Transfer transfer)
         {
-            HelperFns.Helper.WriteInDB(jsonFilepath,3,null,null, transfer);
-        }
-
-        public static void ReconcileTransaction(Transfer transfer, FinancialEntity financialEntity)
-        {
-            //directamente mando desde acá los datos necesarios del cliente, allá proceso todo y devuelvo lo necesario, con eso puedo imprimir un comprobante
-
-            //var transferReconciled = Reconciler.Entities.ReconcileAccounts.ReconcileFunds(financialEntity.ID, financialEntity.Name, transfer.Origin, transfer.Destination, transfer.Amount, transfer.AccountNumber, transfer.Alias, transfer.DNI, transfer.ClientID, transfer.TransferID);
-
+            HelperFns.Helper.WriteInDB(jsonFilepath,3,null,null, transfer,null);
         }
 
 
-
-       public string GetTransferData(Person person)
+        public static void ReconcileTransaction(Transfer transfer, FinancialEntity financialEntity, ReconcileAccounts reconcileAccounts)
         {
-            return $"Name: {Name}, DNI: {DNI}, Origin: {Origin}, Destination: {Destination}, Amount: {Amount}";
+            reconcileAccounts.ReconcileFunds(transfer,financialEntity);
+
+        }
+
+       public string GetTransferData(Person person) //el comprobante que retorna ReconcileFunds (se guarda en db)
+        {
+            return "";
         }
     }
 }
